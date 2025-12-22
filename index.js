@@ -39,8 +39,19 @@
 //}
 
 function isSpam(number) {
-  console.log(number);
-  regex = /([0-9]+)/;
-  console.log(regex.test(number));
-  console.log(number.split(regex));
+  // console.log(number)
+  // regex = /([0-9]+)/
+  // console.log(regex.test(number))
+  // console.log(number.split(regex))
+  //// sanitise number
+  console.log(number.replace(/[^0-9]/g, ' '));
+  const sanitised = number.replace(/[^0-9]/g, ' ');
+  console.log(sanitised);
+  // split
+  const splitArr = sanitised.split(/[\s]+/g);
+  console.log(splitArr);
+  // clean arr
+  // remove empty
+  const cleanArr = splitArr.filter(Boolean);
+  console.log(cleanArr);
 }
