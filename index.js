@@ -10,3 +10,27 @@
 // The area code is greater than 900 or less than 200.
 // The sum of first three digits of the local number appears within last four digits of the local number.
 // The number has the same digit four or more times in a row (ignoring the formatting characters).
+
+function isSpam(number) {
+  //console.log(number)
+  // split into arr
+  const arr = number.split(' ');
+  console.log(arr);
+  console.log(arr[1]);
+
+  // area code
+  // get number
+  const areaNum = arr[1].slice(1, -1);
+  console.log(areaNum);
+
+  // country code
+  if (arr[0].length > 2 || arr[0][0] !== 0) {
+    return false;
+  }
+
+  if (areaNum > 900 && areaNum < 200) {
+    return false;
+  }
+
+  // return number;
+}
