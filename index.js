@@ -39,86 +39,50 @@
 //}
 
 // function isSpam(number) {
-//   // console.log(number)
-//   // regex = /([0-9]+)/
-//   // console.log(regex.test(number))
-//   // console.log(number.split(regex))
-//   //// sanitise number
-//   console.log(number.replace(/[^0-9]/g, ' '));
-//   const sanitised = number.replace(/[^0-9]/g, ' ');
-//   console.log(sanitised);
-//   // split
-//   const splitArr = sanitised.split(/[\s]+/g);
-//   console.log(splitArr);
-//   // clean arr
-//   // remove empty
-//   const cleanArr = splitArr.filter(Boolean);
-//   console.log(cleanArr);
-// }
+// console.log(number)
+// regex = /([0-9]+)/
+// console.log(regex.test(number))
+// console.log(number.split(regex))
+//// sanitise number
+// console.log(number.replace(/[^0-9]/g, " "))
+// const sanitised = number.replace(/[^0-9]/g, " ");
+// console.log(sanitised)
 
-//function isSpam(number) {
-//console.log(number)
-// split into arr
-// const arr = number.split(" ");
-// console.log(arr)
-//console.log(arr[1])
+// split
+// const splitArr = sanitised.split(/[\s]+/g)
+// console.log(splitArr)
+// clean arr
+// remove empty
+// const cleanArr = splitArr.filter(Boolean);
+// console.log(cleanArr)
 
-// normalise the arr
-// console.log(arr[0], arr[1], arr[2], arr[3])
-
-// area code
-// get number
-//const areaNum = arr[1].slice(1,-1)
-//console.log(areaNum)
-
-// country code
-// if (arr[0].length > 2 || arr[0][0] !== 0) {
+// Country code
+// if (cleanArr[0].length > 2 || Number.parseInt(cleanArr[0][0]) !== 0) {
 //  return false
 // }
 
-// if (areaNum > 900 || areaNum < 200) {
-//  return false
+// Area code
+// if (Number.parseInt(cleanArr[1]) > 900 || Number.parseInt(cleanArr[1]) < 200) {
+// return false
 // }
 
-// return number;
+// sum local
+// let counter = 0;
+//  for (const x of cleanArr[2]) {
+//  counter = counter + Number.parseInt(x);
+// }
+// console.log(typeof counter.toString())
+// if (cleanArr[3].includes(counter.toString())) {
+//  return false
 //}
 
-//function isSpam(number) {
-//console.log(number)
-// split into arr
-// const arr = number.split(" ");
-// console.log(arr)
-//console.log(arr[1])
-
-// normalise the arr
-// console.log(arr[0], arr[1], arr[2], arr[3])
-
-// area code
-// get number
-//const areaNum = arr[1].slice(1,-1)
-//console.log(areaNum)
-
-// country code
-// if (arr[0].length > 2 || arr[0][0] !== 0) {
-//  return false
 // }
-
-// if (areaNum > 900 || areaNum < 200) {
-//  return false
-// }
-
-// return number;
-//}
 
 function isSpam(number) {
-  // console.log(number)
-  // regex = /([0-9]+)/
-  // console.log(regex.test(number))
-  // console.log(number.split(regex))
-  //// sanitise number
-  console.log(number.replace(/[^0-9]/g, ' '));
+  // sanitise
   const sanitised = number.replace(/[^0-9]/g, ' ');
   console.log(sanitised);
+
   // split
   const splitArr = sanitised.split(/[\s]+/g);
   console.log(splitArr);
@@ -127,23 +91,25 @@ function isSpam(number) {
   const cleanArr = splitArr.filter(Boolean);
   console.log(cleanArr);
 
-  // Country code
-  if (cleanArr[0].length > 2 || Number.parseInt(cleanArr[0][0]) !== 0) {
-    return false;
+  // if country code is greater than 2 digits or doesn't start with a zero => SPAM
+  if (cleanArr[0].length > 2 || Number.parseInt(cleanArr[0][0]) === 0) {
+    return true;
   }
 
-  // Area code
+  // if area code is greater than 900 or less than 200 =>  SPAM
   if (
     Number.parseInt(cleanArr[1]) > 900 ||
     Number.parseInt(cleanArr[1]) < 200
   ) {
-    return false;
+    return true;
   }
 
-  // sum local
+  // sum of first three of digits in local numbers appears within last four of local number => SPAM
   let counter = 0;
   for (const x of cleanArr[2]) {
     counter = counter + Number.parseInt(x);
   }
   console.log(counter);
+
+  // number has same digit four or more times in a row => SPAM
 }
