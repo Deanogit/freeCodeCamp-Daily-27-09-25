@@ -86,13 +86,14 @@ function isSpam(number) {
   // split
   const splitArr = sanitised.split(/[\s]+/g);
   console.log(splitArr);
+
   // clean arr
   // remove empty
   const cleanArr = splitArr.filter(Boolean);
   console.log(cleanArr);
 
   // if country code is greater than 2 digits or doesn't start with a zero => SPAM
-  if (cleanArr[0].length > 2 || Number.parseInt(cleanArr[0][0]) === 0) {
+  if (cleanArr[0].length > 2 || Number.parseInt(cleanArr[0][0]) !== 0) {
     return true;
   }
 
@@ -110,6 +111,17 @@ function isSpam(number) {
     counter = counter + Number.parseInt(x);
   }
   console.log(counter);
+  if (cleanArr[3].includes(counter.toString())) {
+    return true;
+  }
 
   // number has same digit four or more times in a row => SPAM
+  const regex = /(\d)\1\1\1/;
+  const cleanStr = cleanArr.join('');
+  console.log(cleanStr);
+  if (regex.test(cleanStr)) {
+    return true;
+  }
+
+  return false;
 }
