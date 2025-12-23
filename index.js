@@ -83,6 +83,33 @@
 // return number;
 //}
 
+//function isSpam(number) {
+//console.log(number)
+// split into arr
+// const arr = number.split(" ");
+// console.log(arr)
+//console.log(arr[1])
+
+// normalise the arr
+// console.log(arr[0], arr[1], arr[2], arr[3])
+
+// area code
+// get number
+//const areaNum = arr[1].slice(1,-1)
+//console.log(areaNum)
+
+// country code
+// if (arr[0].length > 2 || arr[0][0] !== 0) {
+//  return false
+// }
+
+// if (areaNum > 900 || areaNum < 200) {
+//  return false
+// }
+
+// return number;
+//}
+
 function isSpam(number) {
   // console.log(number)
   // regex = /([0-9]+)/
@@ -101,12 +128,22 @@ function isSpam(number) {
   console.log(cleanArr);
 
   // Country code
-  if (cleanArr[0].length > 2 || cleanArr[0][0] !== 0) {
+  if (cleanArr[0].length > 2 || Number.parseInt(cleanArr[0][0]) !== 0) {
     return false;
   }
 
   // Area code
-  if (cleanArr[1] > 900 || cleanArr[1] < 200) {
+  if (
+    Number.parseInt(cleanArr[1]) > 900 ||
+    Number.parseInt(cleanArr[1]) < 200
+  ) {
     return false;
   }
+
+  // sum local
+  let counter = 0;
+  for (const x of cleanArr[2]) {
+    counter = counter + Number.parseInt(x);
+  }
+  console.log(counter);
 }
