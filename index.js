@@ -38,6 +38,51 @@
 // return number;
 //}
 
+// function isSpam(number) {
+//   // console.log(number)
+//   // regex = /([0-9]+)/
+//   // console.log(regex.test(number))
+//   // console.log(number.split(regex))
+//   //// sanitise number
+//   console.log(number.replace(/[^0-9]/g, ' '));
+//   const sanitised = number.replace(/[^0-9]/g, ' ');
+//   console.log(sanitised);
+//   // split
+//   const splitArr = sanitised.split(/[\s]+/g);
+//   console.log(splitArr);
+//   // clean arr
+//   // remove empty
+//   const cleanArr = splitArr.filter(Boolean);
+//   console.log(cleanArr);
+// }
+
+//function isSpam(number) {
+//console.log(number)
+// split into arr
+// const arr = number.split(" ");
+// console.log(arr)
+//console.log(arr[1])
+
+// normalise the arr
+// console.log(arr[0], arr[1], arr[2], arr[3])
+
+// area code
+// get number
+//const areaNum = arr[1].slice(1,-1)
+//console.log(areaNum)
+
+// country code
+// if (arr[0].length > 2 || arr[0][0] !== 0) {
+//  return false
+// }
+
+// if (areaNum > 900 || areaNum < 200) {
+//  return false
+// }
+
+// return number;
+//}
+
 function isSpam(number) {
   // console.log(number)
   // regex = /([0-9]+)/
@@ -54,4 +99,14 @@ function isSpam(number) {
   // remove empty
   const cleanArr = splitArr.filter(Boolean);
   console.log(cleanArr);
+
+  // Country code
+  if (cleanArr[0].length > 2 || cleanArr[0][0] !== 0) {
+    return false;
+  }
+
+  // Area code
+  if (cleanArr[1] > 900 || cleanArr[1] < 200) {
+    return false;
+  }
 }
